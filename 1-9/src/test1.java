@@ -9,8 +9,9 @@ public class test1 {
 		long c = 1111111111;
 		System.out.println(c * 2);
 //		3.boolean型の変数の値に不正な文字列比較を入れてfalseを出力してください。	
-		boolean d = true;
-		boolean e = false;
-		System.out.println(d == e);
+		String d = "Java";
+		String e = "PHP";
+		boolean f = d.equals(e);
+		System.out.println(f);
 	}
 }
