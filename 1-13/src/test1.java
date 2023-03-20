@@ -16,23 +16,29 @@ public class test1 {
 
 		loop : for(int a = 2; a < strArray1.size(); a++) {
 			strArray2.add(strArray1.get(a));
-			
+
 			for(int b = 0; b < strArray2.size(); b++) {
 				if(strArray2.get(b).equals("k") || strArray2.get(b).equals("a") || strArray2.get(b).equals("o")) {
 					strArray3.add(strArray2.get(b));
 				}
-			
+
 				for(int c = 0; c < strArray3.size(); c++) {
-					if(strArray3.get(c).equals("k") || strArray3.get(c).equals("a") || strArray3.get(c).equals("o")) {
-						strArray4.add("k");
-						strArray4.add("a");
-						strArray4.add("k");
-						strArray4.add("a");
-						strArray4.add("o");
+					if(strArray4.size() == 0 && strArray3.get(c).equals("k")) {
+						strArray4.add(0,strArray3.get(c));
+
+					}else if(strArray4.size() == 1 && strArray3.get(c).equals("a")) {
+						strArray4.add(1,strArray3.get(c));
+
+					}else if(strArray4.size() == 2 && strArray3.get(c).equals("k")) {
+						strArray4.add(2,strArray3.get(c));
+
+					}else if(strArray4.size() == 3 && strArray3.get(c).equals("a")) {
+						strArray4.add(3,strArray3.get(c));
+
+					}else if(strArray4.size() == 4 && strArray3.get(c).equals("o")) {
+						strArray4.add(4,strArray3.get(c));
 						break loop;
-						
-						}
-					//						System.out.println(strArray4);
+					}
 				}
 			}
 		}
