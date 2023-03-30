@@ -22,6 +22,12 @@ comment on column customers.name is '顧客名';
 comment on column customers.email is 'メールアドレス';
 comment on column customers.phone is '電話番号';
 
+COMMENT ON TABLE customers IS '顧客管理';
+COMMENT ON TABLE orders IS '注文情報';
+COMMENT ON TABLE order_items IS '注文アイテム';
+COMMENT ON TABLE products IS '製品情報';
+
+
 
 create table orders(
     order_id integer primary key,
