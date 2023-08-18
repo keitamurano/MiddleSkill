@@ -1,0 +1,99 @@
+⚫️課題5-1～5-5
+【準備】
+1.ジップファイルを保存して環境を作って整えてください
+2.pom.xmlは使用するDBで自分で切り替えてください
+3.下記SQL文を打ち込んで下さい
+
+
+3-1
+CREATE TABLE "user" (
+ id SERIAL NOT NULL,
+  name VARCHAR(100) NOT NULL,
+  address VARCHAR(255),
+  phone VARCHAR(50),
+  update_date TIMESTAMP NOT NULL,
+  create_date TIMESTAMP NOT NULL,
+  delete_date TIMESTAMP,
+ PRIMARY KEY (id)
+);
+
+
+3-2
+INSERT INTO public."user"(
+id, name, address, phone, update_date, create_date)
+VALUES ('1', 'テスト太郎', '東京都サンプル区1-1', '080-0000-0000', '2019-05-06 12:00:00', '2019-05-01 12:00:00');
+
+
+
+
+【課題】
+①下記の6つのエラーが発生しCRAD機能とバリデーション、各画面遷移を邪魔して
+いるため修正して正常に行えるようにしてください。
+
+
+TemplateInputException
+NumberFormatException
+ClassCastException
+NullPointerException
+IndexOutOfBoundsException
+ArithmeticException
+
+
+
+
+②TemplateInputExceptionの原因と原因箇所と修正内容を説明してください
+原因:Thymeleafの文法違い等で発生する
+原因箇所: テンプレートファイル（HTMLファイル）の中で間違った参照がある
+修正内容:変数やメソッドの間違えを修正
+
+
+
+③NumberFormatExceptionの原因と原因箇所と修正内容を説明してください
+原因：文字列を数値に変換しようとした際に、適切な形式でない文字列が含まれていた場合
+原因箇所：UserController
+　　　　　String name = new String();
+　　　　　int User =  Integer.parseInt(name);
+修正内容：上記の2行を削除
+
+
+④ClassCastExceptionの原因と原因箇所と修正内容を説明してください
+原因：クラスのキャストに失敗
+原因箇所：UserController
+　　　　　Integer logName = (Integer) name;
+修正内容：String logName = (String) name;
+
+
+
+⑤NullPointerExceptionの原因と原因箇所と修正内容を説明してください
+原因: 参照型変数にnull値が格納されている時に、参照型変数を参照しようとした場合に発生する
+原因箇所:メソッドや配列にnull値を渡し、参照しようとしている箇所
+修正内容: 変数をnull以外・配列は空で初期化する等
+
+
+
+⑥IndexOutOfBoundsExceptionの原因と原因箇所と修正内容を説明してください
+原因：配列やリストなどのコレクションから無効なインデックスにアクセスした際
+原因箇所：UserController
+　　　　　for(int i = 0;i<userlist.size()-1;i++) {
+			userlists.add(userlist.get(-2));
+		}
+修正内容：for(int i = 0;i<userlist.size();i++) {
+			userlists.add(userlist.get(i));
+		}
+
+
+
+⑦ArithmeticExceptionの原因と原因箇所と修正内容を説明してください
+原因：数値の計算において、不正な算術処理が行われた場合
+原因箇所：UserController
+　　　　　BigDecimal id3 = id1.divide(id2);
+修正内容：BigDecimal id3 = id1.divide(id2, 2, RoundingMode.HALF_UP);
+
+
+
+その他発生したエラー
+InvalidDataAccessResourceUsageException
+原因：データベースクエリの実行時に必要なリソース（テーブル、カラムなど）が存在しないか、アクセス権がない場合
+原因箇所：UserEntity
+　　　　　@Column(name = "ib")
+修正内容：@Column(name = "id")
